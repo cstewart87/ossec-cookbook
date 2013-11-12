@@ -28,7 +28,13 @@ agent_manager = "#{node['ossec']['user']['dir']}/bin/ossec-batch-manager.pl"
 
 ssh_hosts = Array.new
 
-search(:node, "ossec:[* TO *] NOT role:#{node['ossec']['server_role']}") do |n|
+if node['ossec']['multi_environment_monitoring']
+  search_query = "ossec:[* TO *] NOT role:#{node['ossec']['server_role']}"
+else
+  search_query = "chef_environment:#{node.chef_environment} AND (ossec:[* TO *] NOT role:#{node['ossec']['server_role']})"
+end
+
+search(:node, search_query) do |n|
 
   ssh_hosts << n['ipaddress'] if n['keys']
 
@@ -47,7 +53,8 @@ template "/usr/local/bin/dist-ossec-keys.sh" do
   not_if { ssh_hosts.empty? }
 end
 
-ossec_key = data_bag_item("ossec", "ssh")
+secret    = Chef::EncryptedDataBagItem.load_secret(node['ossec']['data_bag_secret'])
+ossec_key = Chef::EncryptedDataBagItem.load("ossec", node['ossec']['data_bag_item'], secret)
 
 directory "#{node['ossec']['user']['dir']}/.ssh" do
   owner "root"

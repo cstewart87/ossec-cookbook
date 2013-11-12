@@ -22,7 +22,12 @@ ossec_server = Array.new
 if node.run_list.roles.include?(node['ossec']['server_role'])
   ossec_server << node['ipaddress']
 else
-  search(:node,"role:#{node['ossec']['server_role']}") do |n|
+  if node['ossec']['multi_environment_monitoring']
+    search_query = "role:#{node['ossec']['server_role']}"
+  else
+    search_query = "chef_environment:#{node.chef_environment} AND role:#{node['ossec']['server_role']}"
+  end
+  search(:node, search_query) do |n|
     ossec_server << n['ipaddress']
   end
 end

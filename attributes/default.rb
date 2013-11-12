@@ -17,7 +17,12 @@
 # limitations under the License.
 #
 
+# databag settings
+default['ossec']['data_bag_secret'] = "/etc/chef/encrypted_data_bag_secret"
+default['ossec']['data_bag_item']   = "ssh"
+
 # general settings
+default['ossec']['multi_environment_monitoring'] = false
 default['ossec']['server_role'] = "ossec_server"
 default['ossec']['checksum']    = "f8ac4a7d74068a8ca4f14e3c906bfa3a68a87fd026b463422bea79fe9d747249"
 default['ossec']['version']     = "2.7"
