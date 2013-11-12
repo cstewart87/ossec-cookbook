@@ -39,7 +39,8 @@ node.save
 
 include_recipe "ossec"
 
-ossec_key = data_bag_item("ossec", "ssh")
+secret    = Chef::EncryptedDataBagItem.load_secret(node['ossec']['data_bag_secret'])
+ossec_key = Chef::EncryptedDataBagItem.load("ossec", node['ossec']['data_bag_item'], secret)
 
 user "ossecd" do
   comment "OSSEC Distributor"
