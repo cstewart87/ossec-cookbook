@@ -60,7 +60,11 @@ template "#{node['ossec']['user']['dir']}/etc/ossec.conf" do
   group "ossec"
   mode 0440
   variables(:ossec => node['ossec']['user'])
-  notifies :restart, "service[ossec]"
+  if node['ossec']['user']['install_type'] == "agent" && node['ossec']['user']['agent_server_ip'].nil?
+    Chef::Log.warn("No ossec server up and running.  Will not start service yet.")
+  else
+    notifies :restart, "service[ossec]"
+  end
 end
 
 case node['platform']
