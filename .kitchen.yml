@@ -28,3 +28,15 @@ suites:
 - name: default
   run_list: ["recipe[ossec]"]
   attributes: {}
+- name: wui
+  provisioner:
+    name: chef_zero
+  driver_config:
+    network:
+      - ["private_network", {ip: "192.168.33.33"}]
+  run_list:
+    - "recipe[ossec::server]"
+    - "recipe[ossec::wui]"
+  attributes: { 'ossec': {'data_bag_secret': '/tmp/kitchen/encrypted_data_bag_secret'}}
+  data_bags_path: 'test/integration/default/data_bags'
+  encrypted_data_bag_secret_key_path: 'test/integration/default/encrypted_data_bag_secret'

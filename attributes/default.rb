@@ -31,7 +31,7 @@ default['ossec']['logs']        = []
 default['ossec']['syscheck_freq'] = 79200
 
 # server-only
-default['ossec']['server']['maxagents'] = 256
+default['ossec']['server']['maxagents']    = 256
 
 # used to populate config files and preload values for install
 default['ossec']['user']['language'] = "en"
@@ -53,3 +53,10 @@ default['ossec']['user']['firewall_response'] = true
 default['ossec']['user']['pf'] = false
 default['ossec']['user']['pf_table'] = false
 default['ossec']['user']['white_list'] = []
+
+# web-ui only
+default['ossec']['wui']['checksum']     = "142febadfd4b0de5a13ebd93c13eedfbee5f1899b6ee71c248054c14f47b8089"
+default['ossec']['wui']['version']      = "0.3"
+default['ossec']['wui']['url']          = "http://www.ossec.net/files/ossec-wui-#{node['ossec']['wui']['version']}.tar.gz"
+default['ossec']['users_databag']       = 'users'
+default['ossec']['users_databag_group'] = 'sysadmins'
