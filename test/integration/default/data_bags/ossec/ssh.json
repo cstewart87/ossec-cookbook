@@ -1,15 +1,5 @@
 {
   "id": "ssh",
-  "pubkey": {
-    "encrypted_data": "dLtNZglrbV+TItwFxPAIKpAy6zLfpZ9iYIswj4eVprw/fy9mKl27h5MtEtGF\nEeJoKssGuHFFsWEP+bJ3Lrmtiw==\n",
-    "iv": "S+vgEyJJqe7+ZLFJFrU2Yg==\n",
-    "version": 1,
-    "cipher": "aes-256-cbc"
-  },
-  "privkey": {
-    "encrypted_data": "CD6UTB73IX8DJj/3qDe1+wbCEuLsLGQQyBhK9plceNwqadLVdtcy4uw/UoOC\nN+/yIhv36IrBctZXfRGtlkG/CmVEj/57fNK87Z9lfMYXPAJgua7l7KNojVqQ\njfexaJmBNpNGaFQvm+dD0AxKIZLY5Q==\n",
-    "iv": "6nJECYBIV6soZquN/7LDpA==\n",
-    "version": 1,
-    "cipher": "aes-256-cbc"
-  }
+  "pubkey": "pubkey",
+  "privkey": "privkey"
 }

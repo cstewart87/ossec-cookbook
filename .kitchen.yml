@@ -37,6 +37,6 @@ suites:
   run_list:
     - "recipe[ossec::server]"
     - "recipe[ossec::wui]"
-  attributes: { 'ossec': {'data_bag_secret': '/tmp/kitchen/encrypted_data_bag_secret'}}
+  attributes:
+    dev_mode: true
   data_bags_path: 'test/integration/default/data_bags'
-  encrypted_data_bag_secret_key_path: 'test/integration/default/encrypted_data_bag_secret'

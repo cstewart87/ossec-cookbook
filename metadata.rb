@@ -9,6 +9,7 @@ version          "1.0.5"
 depends "build-essential"
 depends "apache2"
 depends "apt"
+depends "chef-vault"
 
 %w{ debian ubuntu arch redhat centos fedora }.each do |os|
   supports os
