@@ -39,8 +39,7 @@ node.save unless Chef::Config[:solo]
 
 include_recipe "ossec"
 
-secret    = Chef::EncryptedDataBagItem.load_secret(node['ossec']['data_bag_secret'])
-ossec_key = Chef::EncryptedDataBagItem.load("ossec", node['ossec']['data_bag_item'], secret)
+ossec_key = chef_vault_item("ossec", node['ossec']['data_bag_item'])
 
 user "ossecd" do
   comment "OSSEC Distributor"

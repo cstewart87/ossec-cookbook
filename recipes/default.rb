@@ -18,6 +18,7 @@
 #
 
 include_recipe "build-essential"
+include_recipe "chef-vault"
 
 ossec_dir = "ossec-hids-#{node['ossec']['version']}"
 
