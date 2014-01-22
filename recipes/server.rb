@@ -53,8 +53,6 @@ template "/usr/local/bin/dist-ossec-keys.sh" do
   not_if { ssh_hosts.empty? }
 end
 
-include_recipe "chef-vault"
-
 ossec_key = chef_vault_item("ossec", node['ossec']['data_bag_item'])
 
 directory "#{node['ossec']['user']['dir']}/.ssh" do
