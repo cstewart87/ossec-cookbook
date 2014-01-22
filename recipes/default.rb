@@ -21,6 +21,18 @@ include_recipe "build-essential"
 
 ossec_dir = "ossec-hids-#{node['ossec']['version']}"
 
+package 'perl-Time-HiRes' do
+  package_name value_for_platform(
+    ["centos", "redhat", "suse", "fedora" ] => {
+     "default" => "perl-Time-HiRes"
+    },
+    ["ubuntu", "debian"] => {
+     "default" => "perl"
+    }
+  )
+  action :install
+end
+
 remote_file "#{Chef::Config[:file_cache_path]}/#{ossec_dir}.tar.gz" do
   source node['ossec']['url']
   checksum node['ossec']['checksum']
